@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #edf2f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 2px 2px 8px gray;
+      text-align: center;
+    }
+    input, select, button {
+      margin: 8px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Temperature Converter</h2>
+  <input type="number" id="temp" placeholder="Enter temperature">
+  <select id="unit">
+    <option value="C">Celsius</option>
+    <option value="F">Fahrenheit</option>
+    <option value="K">Kelvin</option>
+  </select>
+  <br>
+  <button onclick="convert()">Convert</button>
+  <h3 id="result"></h3>
+</div>
+
+<script>
+  function convert() {
+    let t = parseFloat(document.getElementById("temp").value);
+    let u = document.getElementById("unit").value;
+    let res = "";
+
+    if (isNaN(t)) {
+      res = "Enter a valid number!";
+    } else {
+      if (u === "C") {
+        res = t + "°C = " + ((t*9/5)+32).toFixed(2) + "°F | " + (t+273.15).toFixed(2) + "K";
+      } else if (u === "F") {
+        res = t + "°F = " + ((t-32)*5/9).toFixed(2) + "°C | " + (((t-32)*5/9)+273.15).toFixed(2) + "K";
+      } else {
+        res = t + "K = " + (t-273.15).toFixed(2) + "°C | " + (((t-273.15)*9/5)+32).toFixed(2) + "°F";
+      }
+    }
+    document.getElementById("result").innerText = res;
+  }
+</script>
+
+</body>
+</html>
